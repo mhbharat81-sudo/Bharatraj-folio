@@ -1,48 +1,128 @@
-.contact_wrapper svg {
-  font-size: 1em;
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-.contact-form {
-  padding-top: 20px;
-
-  button {
-    float: right;
-    background-color: white;
-    color: #050f0b;
-  }
-
-  button:hover {
-    background-color: #5000ca;
-    color: white;
-  }
-
-  fieldset {
-    background-color: white;
-  }
-}
-
-label {
-  font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
-}
-
-.form-flex {
+.contact-section {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8% 5%;
+  text-align: center;
+}
+
+.contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.dark-mode .contact-subtitle {
+  color: #fff;
+}
+
+.contact-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: #0b1120;
+  margin-bottom: 25px;
+}
+
+.dark-mode .contact-title {
+  color: #e2e8f0;
+}
+
+.contact-description {
+  font-size: 1.3rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.dark-mode .contact-description {
+  color: #94a3b8;
+}
+
+.contact-description a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dark-mode .contact-description a {
+  color: #60a5fa;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 15px;
-  padding-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.form-flex .MuiFormControl-root {
-  width: 100%;
+.resume-button-container {
+  display: flex;
+  justify-content: center;
 }
 
-form {
-  width: 100% !important;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
 }
 
-.body-form {
-  width: 100% !important;
-  margin-bottom: 15px !important;
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dark-mode .btn:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.copy-email-btn {
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.dark-mode .copy-email-btn {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+
+.linkedin-btn {
+  background: #0a66c2;
+  color: #ffffff;
+}
+
+.github-btn {
+  background: linear-gradient(135deg, #6e5494, #24292e);
+  color: #ffffff;
+}
+
+.resume-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-title {
+    font-size: 3rem;
+  }
+  
+  .contact-description {
+    font-size: 1.1rem;
+  }
 }

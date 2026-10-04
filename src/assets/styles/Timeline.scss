@@ -1,38 +1,96 @@
-.vertical-timeline span {
-    color: white;
-    font-family: 'Courier Prime', monospace;
+/* Modern engaging timeline styling */
+
+.items-container {
+    padding: 5% 10%;
 }
 
-.vertical-timeline p {
-    color: rgb(39, 40, 34);
+.items-container h1 {
+    font-size: 3em;
+    margin-bottom: 40px;
+}
+
+/* Light mode overrides (default) */
+.vertical-timeline-element-content {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    padding: 2em !important;
+    border-top: 5px solid #2962ff;
+}
+
+.vertical-timeline-element-content-arrow {
+    border-right: 7px solid #ffffff !important;
+}
+
+.vertical-timeline-element-title {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 8px !important;
+}
+
+.vertical-timeline-element-subtitle {
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    color: #2962ff !important; 
+    margin-bottom: 15px !important;
 }
 
 .vertical-timeline-element p {
-    color: rgb(39, 40, 34);
+    font-size: 1.1rem !important;
+    line-height: 1.7 !important;
+    color: #555 !important;
 }
 
-.vertical-timeline-element h3 {
-    color: rgb(39, 40, 34);
+.vertical-timeline-element-date {
+    font-size: 1.15rem !important;
+    font-weight: 600;
+    color: #444 !important; /* Date color on light mode background */
 }
 
-.vertical-timeline-element h4 {
-    color: rgb(39, 40, 34);
+/* Dark mode overrides */
+.dark-mode .vertical-timeline-element-content {
+    background: #1e1e1e !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    border-top: 5px solid #f39c12;
 }
 
-.vertical-timeline-element span {
-    color: rgb(39, 40, 34);
+.dark-mode .vertical-timeline-element-content-arrow {
+    border-right: 7px solid #1e1e1e !important;
 }
 
-.vertical-timeline-element .vertical-timeline-element-date {
-    color: white;
+.dark-mode .vertical-timeline-element-title {
+    color: #eeeeee !important;
 }
 
-.svg-inline--fa {
-    color: white;
+.dark-mode .vertical-timeline-element-subtitle {
+    color: #f39c12 !important; 
+}
+
+.dark-mode .vertical-timeline-element p {
+    color: #cccccc !important;
+}
+
+.dark-mode .vertical-timeline-element-date {
+    color: #eeeeee !important; /* Date color on dark mode background */
+}
+
+/* Icon style adjustments */
+.vertical-timeline-element-icon {
+    box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05) !important;
+}
+
+.dark-mode .vertical-timeline-element-icon {
+    box-shadow: 0 0 0 4px #121212, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05) !important;
 }
 
 @media screen and (max-width: 1170px) {
-    .vertical-timeline-element .vertical-timeline-element-date {
-        color: rgb(39, 40, 34);
+    /* When screen gets small, the date is moved inside the box, so it should match the paragraph text color */
+    .vertical-timeline-element-date {
+        color: #444 !important;
+    }
+    
+    .dark-mode .vertical-timeline-element-date {
+        color: #ddd !important;
     }
 }

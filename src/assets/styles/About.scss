@@ -1,0 +1,76 @@
+.about-section-new {
+    padding: 80px 15%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.about-title {
+    font-size: 3.5em;
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.about-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #5000ca, #2962ff);
+    border-radius: 3px;
+}
+
+.bio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.bio-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #444;
+    font-weight: 400;
+}
+
+.dark-mode .bio-text {
+    color: #dcdcdc;
+}
+
+/* Replaced heavy box backgrounds with sleek, modern gradient text */
+.highlight {
+    background: linear-gradient(90deg, #5000ca, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.dark-mode .highlight {
+    background: linear-gradient(90deg, #6ba1ff, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .about-section-new {
+        padding: 60px 5%;
+    }
+    
+    .about-title {
+        font-size: 2.5em;
+    }
+    
+    .bio-text {
+        font-size: 1.1rem;
+    }
+}

@@ -153,3 +153,12 @@ p, a, h1, h2, h3, h4, h5, label, button {
     }
   }
 }
+
+/* Global Button Hover Animation */
+button, .MuiButtonBase-root {
+  transition: transform 0.2s ease-in-out !important;
+}
+
+button:hover, .MuiButtonBase-root:hover {
+  transform: scale(0.92) !important;
+}

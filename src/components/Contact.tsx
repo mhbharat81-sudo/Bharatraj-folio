@@ -1,114 +1,39 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import TextField from '@mui/material/TextField';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FadeIn from './FadeIn';
 
 function Contact() {
-
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<boolean>(false);
-
-  const form = useRef();
-
-  const sendEmail = (e: any) => {
-    e.preventDefault();
-
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
-
-    /* Uncomment below if you want to enable the emailJS */
-
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+  const copyEmail = () => {
+    navigator.clipboard.writeText("mhbharat81@gmail.com");
+    alert("Email copied to clipboard!");
   };
 
   return (
-    <div id="contact">
-      <div className="items-container">
-        <div className="contact_wrapper">
-          <h1>Contact Me</h1>
-          <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
-          <Box
-            ref={form}
-            component="form"
-            noValidate
-            autoComplete="off"
-            className='contact-form'
-          >
-            <div className='form-flex'>
-              <TextField
-                required
-                id="outlined-required"
-                label="Your Name"
-                placeholder="What's your name?"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                error={nameError}
-                helperText={nameError ? "Please enter your name" : ""}
-              />
-              <TextField
-                required
-                id="outlined-required"
-                label="Email / Phone"
-                placeholder="How can I reach you?"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                error={emailError}
-                helperText={emailError ? "Please enter your email or phone number" : ""}
-              />
-            </div>
-            <TextField
-              required
-              id="outlined-multiline-static"
-              label="Message"
-              placeholder="Send me any inquiries or questions"
-              multiline
-              rows={10}
-              className="body-form"
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-              error={messageError}
-              helperText={messageError ? "Please enter the message" : ""}
-            />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
-              Send
-            </Button>
-          </Box>
+    <div id="contact" className="contact-section">
+      <FadeIn delay={200} transitionDuration={1000} direction="up">
+        <div className="contact-content">
+          <h3 className="contact-subtitle">Contact</h3>
+          <h1 className="contact-title">Get In Touch</h1>
+          <p className="contact-description">
+            Have questions? Ping me with a <a href="https://www.linkedin.com/in/bharatraj-mh-1b19153aa" target="_blank" rel="noreferrer">LinkedIn</a> message or email at <a href="mailto:mhbharat81@gmail.com">mhbharat81@gmail.com</a>.
+          </p>
+          
+          <div className="contact-buttons">
+            <button className="btn copy-email-btn" onClick={copyEmail}>
+              <ContentCopyIcon fontSize="small" /> Copy Email
+            </button>
+            <a href="https://www.linkedin.com/in/bharatraj-mh-1b19153aa" target="_blank" rel="noreferrer" className="btn linkedin-btn">
+              <LinkedInIcon fontSize="small" /> Connect on LinkedIn
+            </a>
+            <a href="https://github.com/mhbharat81-sudo" target="_blank" rel="noreferrer" className="btn github-btn">
+              <GitHubIcon fontSize="small" /> GitHub
+            </a>
+          </div>
         </div>
-      </div>
+      </FadeIn>
     </div>
   );
 }

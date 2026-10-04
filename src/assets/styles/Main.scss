@@ -1,5 +1,8 @@
 .dark-mode .about-section {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #0b1120;
+    background-image: 
+        linear-gradient(to right, rgba(30, 41, 59, 0.7) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.7) 1px, transparent 1px);
 }
 
 .about-section {
@@ -9,12 +12,30 @@
     align-items: center;
     width: 100%;
     padding: 0px 15%;
-    min-height: 700px;
-    background-image: url("../images/bg-dark.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    min-height: 800px;
+    background-color: #f8fafc;
+    background-image: 
+        linear-gradient(to right, rgba(226, 232, 240, 0.8) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.8) 1px, transparent 1px);
+    background-size: 50px 50px;
     background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient fade at the bottom to transition smoothly into the next section */
+.about-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 300px;
+    background: linear-gradient(180deg, transparent 0%, #f8fafc 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dark-mode .about-section::after {
+    background: linear-gradient(180deg, transparent 0%, #0b1120 100%);
 }
 
 .about-section .content {
@@ -36,25 +57,98 @@
         display: none;
     }
 
-    p {
-        font-size: 1.5em;
-        margin-block-start: 0px;
-        margin-block-end: 0px;
+    .greeting-text {
+        font-size: 2.2em;
+        margin-block-start: 10px;
+        margin-block-end: 5px;
+        color: #1e293b;
+        font-weight: 700;
+    }
+
+    .location-text {
+        font-size: 1.6em;
+        margin-block-start: 5px;
+        margin-block-end: 10px;
+        color: #64748b;
+        font-weight: 500;
     }
 
     h1 {
-        font-size: 5em;
+        font-size: 3.5em;
         margin-block-start: 0px;
         margin-block-end: 0px;
+        font-weight: 800;
+        line-height: 1.2;
+        
+        .multiply {
+            color: #cbd5e1;
+            margin: 0 10px;
+            font-weight: 400;
+        }
     }
 }
 
 .about-section .image-wrapper {
     z-index: 2;
     img {
-        width: 150px;
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
         border-radius: 50%;
+        border: 6px solid #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
     }
+    img:hover {
+        transform: scale(1.05);
+    }
+}
+
+.dark-mode .about-section .image-wrapper img {
+    border: 6px solid #1e293b;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dark-mode .about-section .content p,
+.dark-mode .about-section .content .location-text {
+    color: #94a3b8;
+}
+
+.dark-mode .about-section .content .greeting-text,
+.dark-mode .about-section .content h1 {
+    color: #f8fafc;
+}
+
+.dark-mode .about-section .content h1 .multiply {
+    color: #64748b;
+}
+
+.button-group {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.main-btn {
+    border-radius: 12px !important;
+    padding: 14px 30px !important;
+    text-transform: none !important;
+    font-weight: bold !important;
+    font-size: 1.2rem !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+}
+
+.outline-btn {
+    border-color: #cbd5e1 !important;
+    color: #334155 !important;
+    background-color: white !important;
+}
+
+.dark-mode .outline-btn {
+    border-color: #475569 !important;
+    color: #f8fafc !important;
+    background-color: #1e293b !important;
 }
 
 .about p {
@@ -105,12 +199,18 @@
 
     @media (max-width:768px) {
         .about-section h1 {
-            font-size: 4em !important;
+            font-size: 2.2em !important;
             text-align: left;
         }
 
         .about-section p {
+            font-size: 1.8em !important;
             text-align: left;
+        }
+        
+        .about-section .image-wrapper img {
+            width: 180px;
+            height: 180px;
         }
 
         .container {
@@ -152,4 +252,20 @@
             width: 100%;
         }
     }
+}
+.wave {
+    display: inline-block;
+    animation: wave-animation 2.5s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+    10% { transform: rotate(14.0deg) }
+    20% { transform: rotate(-8.0deg) }
+    30% { transform: rotate(14.0deg) }
+    40% { transform: rotate(-4.0deg) }
+    50% { transform: rotate(10.0deg) }
+    60% { transform: rotate( 0.0deg) }
+    100% { transform: rotate( 0.0deg) }
 }

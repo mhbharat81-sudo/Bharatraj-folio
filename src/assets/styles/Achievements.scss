@@ -1,0 +1,98 @@
+.achievements-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 10%;
+    text-align: left;
+}
+
+.achievements-container h1 {
+    font-size: 3.5em;
+    margin-bottom: 40px;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 30px;
+}
+
+.achievement-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dark-mode .achievement-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .achievement-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.achievement-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dark-mode .achievement-badge {
+    filter: brightness(0.9);
+}
+
+.achievement-card h2 {
+    font-size: 1.45rem;
+    color: #111;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.dark-mode .achievement-card h2 {
+    color: #fff;
+}
+
+.achievement-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.dark-mode .achievement-card p {
+    color: #ccc;
+}
+
+@media screen and (max-width: 768px) {
+    .achievements-container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .achievements-container h1 {
+        font-size: 2.8em;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}

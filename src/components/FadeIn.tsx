@@ -3,67 +3,95 @@ import React, {
     PropsWithChildren,
     useEffect,
     useState,
+    useRef
   } from "react";
   
   interface Props {
     delay?: number;
     transitionDuration?: number;
-    wrapperTag?: JSXElementConstructor<any>;
-    childTag?: JSXElementConstructor<any>;
+    wrapperTag?: JSXElementConstructor<any> | string;
+    childTag?: JSXElementConstructor<any> | string;
     className?: string;
     childClassName?: string;
     visible?: boolean;
     onComplete?: () => any;
+    direction?: 'up' | 'left' | 'right';
   }
   
   export default function FadeIn(props: PropsWithChildren<Props>) {
     const [maxIsVisible, setMaxIsVisible] = useState(0);
-    const transitionDuration = props.transitionDuration || 400;
-    const delay = props.delay || 50;
+    const [hasIntersected, setHasIntersected] = useState(false);
+    const transitionDuration = props.transitionDuration || 800; // Slower for dramatic effect
+    const delay = props.delay || 100;
     const WrapperTag = props.wrapperTag || "div";
     const ChildTag = props.childTag || "div";
     const visible = typeof props.visible === "undefined" ? true : props.visible;
+    const direction = props.direction || 'up';
+  
+    const wrapperRef = useRef<HTMLElement>(null);
   
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setHasIntersected(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 } // Wait a bit longer before triggering
+        );
+  
+        if (wrapperRef.current) {
+            observer.observe(wrapperRef.current);
+        }
+  
+        return () => observer.disconnect();
+    }, []);
+  
+    useEffect(() => {
+      if (!hasIntersected) return;
+  
       let count = React.Children.count(props.children);
       if (!visible) {
-        // Animate all children out
         count = 0;
       }
   
       if (count === maxIsVisible) {
-        // We're done updating maxVisible, notify when animation is done
         const timeout = setTimeout(() => {
           if (props.onComplete) props.onComplete();
         }, transitionDuration);
         return () => clearTimeout(timeout);
       }
   
-      // Move maxIsVisible toward count
       const increment = count > maxIsVisible ? 1 : -1;
       const timeout = setTimeout(() => {
         setMaxIsVisible(maxIsVisible + increment);
       }, delay);
       return () => clearTimeout(timeout);
-      // eslint-disable-next-line
     }, [
-      // eslint-disable-next-line
       React.Children.count(props.children),
       delay,
       maxIsVisible,
       visible,
       transitionDuration,
+      hasIntersected,
     ]);
   
+    const getTransform = () => {
+        if (direction === 'left') return 'translateX(-150px)';
+        if (direction === 'right') return 'translateX(150px)';
+        return 'translateY(50px)';
+    };
+
     return (
-      <WrapperTag className={props.className}>
+      <WrapperTag ref={wrapperRef as any} className={props.className}>
         {React.Children.map(props.children, (child, i) => {
           return (
             <ChildTag
               className={props.childClassName}
               style={{
-                transition: `opacity ${transitionDuration}ms, transform ${transitionDuration}ms`,
-                transform: maxIsVisible > i ? "none" : "translateY(20px)",
+                transition: `opacity ${transitionDuration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${transitionDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`,
+                transform: maxIsVisible > i ? "none" : getTransform(),
                 opacity: maxIsVisible > i ? 1 : 0,
               }}
             >
@@ -74,4 +102,3 @@ import React, {
       </WrapperTag>
     );
   }
-  

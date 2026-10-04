@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems = [['About', 'about'], ['Skills', 'expertise'], ['Experience', 'history'], ['Projects', 'projects'], ['Achievements', 'achievements'], ['Contact', 'contact']];
 
 function Navigation({parentToChild, modeChange}: any) {
 
@@ -76,28 +76,51 @@ function Navigation({parentToChild, modeChange}: any) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" id="navigation" className={`navbar-fixed-top${scrolled ? ' scrolled' : ''}`}>
-        <Toolbar className='navigation-bar'>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          {mode === 'dark' ? (
-            <LightModeIcon onClick={() => modeChange()}/>
-          ) : (
-            <DarkModeIcon onClick={() => modeChange()}/>
-          )}
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <AppBar component="nav" id="navigation" sx={{ background: 'transparent', boxShadow: 'none', mt: 3, position: 'fixed', zIndex: 1100 }}>
+        <Toolbar className='navigation-bar' sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          backgroundColor: mode === 'dark' ? '#1e1e1e' : '#fff',
+          borderRadius: '50px',
+          margin: '0 auto',
+          width: { xs: '95%', md: '1000px' },
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+          padding: '5px 20px',
+          border: mode === 'dark' ? '1px solid #333' : '1px solid #eee'
+        }}>
+          {/* Avatar and Name */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ display: { sm: 'none' }, color: mode === 'dark' ? '#fff' : '#333' }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <img src="/profile.png" alt="Avatar" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
+            <Box sx={{ fontWeight: 'bold', color: mode === 'dark' ? '#fff' : '#333', fontSize: '1.1rem', display: { xs: 'none', sm: 'block' } }}>Bharatraj</Box>
+          </Box>
+
+          {/* Links */}
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '15px' }}>
             {navItems.map((item) => (
-              <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: '#fff' }}>
+              <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: mode === 'dark' ? '#aaa' : '#555', textTransform: 'none', fontWeight: 'bold', fontSize: '0.95rem', '&:hover': { color: mode === 'dark' ? '#fff' : '#000' } }}>
                 {item[0]}
               </Button>
             ))}
+          </Box>
+
+          {/* Dark Mode Toggle */}
+          <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: mode === 'dark' ? '#333' : '#e9ecef', borderRadius: '30px', padding: '4px', cursor: 'pointer' }} onClick={() => modeChange()}>
+             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '30px', height: '30px', borderRadius: '50%', backgroundColor: mode === 'light' ? '#fff' : 'transparent', boxShadow: mode === 'light' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none' }}>
+                <LightModeIcon sx={{ color: '#f39c12', fontSize: '1.2rem' }}/>
+             </Box>
+             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '30px', height: '30px', borderRadius: '50%', backgroundColor: mode === 'dark' ? '#2962ff' : 'transparent', boxShadow: mode === 'dark' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none' }}>
+                <DarkModeIcon sx={{ color: mode === 'dark' ? '#fff' : '#888', fontSize: '1.2rem' }}/>
+             </Box>
           </Box>
         </Toolbar>
       </AppBar>

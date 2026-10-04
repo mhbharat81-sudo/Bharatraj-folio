@@ -24,27 +24,12 @@ function Navigation({parentToChild, modeChange}: any) {
   const {mode} = parentToChild;
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.getElementById("navigation");
-      if (navbar) {
-        const scrolled = window.scrollY > navbar.clientHeight;
-        setScrolled(scrolled);
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const scrollToSection = (section: string) => {
     console.log(section)

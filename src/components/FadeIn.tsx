@@ -19,6 +19,8 @@ import React, {
   }
   
   export default function FadeIn(props: PropsWithChildren<Props>) {
+    const { children, onComplete } = props;
+    const childrenCount = React.Children.count(children);
     const [maxIsVisible, setMaxIsVisible] = useState(0);
     const [hasIntersected, setHasIntersected] = useState(false);
     const transitionDuration = props.transitionDuration || 800; // Slower for dramatic effect
@@ -51,14 +53,14 @@ import React, {
     useEffect(() => {
       if (!hasIntersected) return;
   
-      let count = React.Children.count(props.children);
+      let count = childrenCount;
       if (!visible) {
         count = 0;
       }
   
       if (count === maxIsVisible) {
         const timeout = setTimeout(() => {
-          if (props.onComplete) props.onComplete();
+          if (onComplete) onComplete();
         }, transitionDuration);
         return () => clearTimeout(timeout);
       }
@@ -69,12 +71,13 @@ import React, {
       }, delay);
       return () => clearTimeout(timeout);
     }, [
-      React.Children.count(props.children),
+      childrenCount,
       delay,
       maxIsVisible,
       visible,
       transitionDuration,
       hasIntersected,
+      onComplete,
     ]);
   
     const getTransform = () => {
@@ -85,7 +88,7 @@ import React, {
 
     return (
       <WrapperTag ref={wrapperRef as any} className={props.className}>
-        {React.Children.map(props.children, (child, i) => {
+        {React.Children.map(children, (child, i) => {
           return (
             <ChildTag
               className={props.childClassName}

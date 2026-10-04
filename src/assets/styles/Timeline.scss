@@ -94,3 +94,9 @@
         color: #ddd !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .items-container h1 {
+        font-size: 2.2em;
+    }
+}

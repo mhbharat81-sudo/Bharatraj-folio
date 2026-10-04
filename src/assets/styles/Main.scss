@@ -199,18 +199,37 @@
 
     @media (max-width:768px) {
         .about-section h1 {
-            font-size: 2.2em !important;
+            font-size: 1.8em !important;
+            text-align: left;
+        }
+
+        .about-section .content .greeting-text {
+            font-size: 1.5em !important;
+            text-align: left;
+        }
+
+        .about-section .content .location-text {
+            font-size: 1.2em !important;
             text-align: left;
         }
 
         .about-section p {
-            font-size: 1.8em !important;
+            font-size: 1.2em !important;
             text-align: left;
         }
         
         .about-section .image-wrapper img {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .floating-symbol {
+            display: none !important;
+        }
+
+        .main-btn {
+            padding: 10px 20px !important;
+            font-size: 1rem !important;
         }
 
         .container {
@@ -234,7 +253,7 @@
         }
 
         .about-section {
-            padding-top: 150px;
+            padding-top: 100px;
             display: block;
             padding-left: 0px;
             padding-right: 0px;
